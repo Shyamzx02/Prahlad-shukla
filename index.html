@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prahlad Shukla | Senior Coder Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#3b82f6',
+                            DEFAULT: '#2563eb',
+                            dark: '#1d4ed8'
+                        },
+                        secondary: {
+                            light: '#f97316',
+                            DEFAULT: '#ea580c',
+                            dark: '#c2410c'
+                        },
+                        dark: {
+                            100: '#1f2937',
+                            200: '#111827',
+                            300: '#0f172a'
+                        }
+                    },
+                    animation: {
+                        'gradient': 'gradient 8s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'typewriter': 'typewriter 2s steps(11) forwards'
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            'from': { boxShadow: '0 0 5px #3b82f6, 0 0 10px #3b82f6, 0 0 15px #3b82f6, 0 0 20px #3b82f6' },
+                            'to': { boxShadow: '0 0 10px #3b82f6, 0 0 20px #3b82f6, 0 0 30px #3b82f6, 0 0 40px #3b82f6' }
+                        },
+                        typewriter: {
+                            'from': { width: '0' },
+                            'to': { width: '11ch' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #2563eb 0%, #ea580c 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #ea580c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #2563eb 0%, #ea580c 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .terminal-window {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .terminal-header {
+            background: linear-gradient(90deg, #2d3748 0%, #4a5568 100%);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .terminal-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .terminal-body {
+            background: #1a202c;
+            padding: 25px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #e2e8f0;
+            min-height: 200px;
+        }
+        
+        .terminal-prompt {
+            color: #48bb78;
+        }
+        
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background: #e2e8f0;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        .skill-bar {
+            background: linear-gradient(90deg, #2563eb 0%, #ea580c 100%);
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5), 0 0 20px rgba(37, 99, 235, 0.3);
+        }
+        
+        .dark-mode-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: #4a5568;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        
+        .dark-mode-toggle::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+            top: 3px;
+            left: 3px;
+            transition: 0.3s;
+        }
+        
+        #dark-mode-toggle:checked ~ .dark-mode-toggle {
+            background: #2563eb;
+        }
+        
+        #dark-mode-toggle:checked ~ .dark-mode-toggle::before {
+            left: 33px;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb 0%, #ea580c 100%);
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-dark-300 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <!-- Dark Mode Toggle -->
+    <div class="fixed top-6 right-6 z-50 flex items-center">
+        <input type="checkbox" id="dark-mode-toggle" class="sr-only">
+        <label for="dark-mode-toggle" class="dark-mode-toggle"></label>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/90 dark:bg-dark-200/90 backdrop-blur-sm z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold gradient-text">Prahlad<span class="text-secondary-dark">Shukla</span></a>
+            <div class="hidden md:flex space-x-10">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <a href="#contact" class="bg-primary-light text-white px-6 py-2 rounded-full hover:bg-primary-dark transition shadow-lg">Hire Me</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen pt-32 pb-20 px-6 relative overflow-hidden">
+        <!-- Animated particles -->
+        <div id="particles-container" class="absolute inset-0 overflow-hidden"></div>
+        
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-between relative z-10">
+            <div class="md:w-1/2 mb-16 md:mb-0">
+                <div class="inline-block px-4 py-1 bg-primary-light/10 rounded-full text-primary-light dark:text-primary-dark mb-6 code-font">
+                    <i class="fas fa-code mr-2"></i> Senior Full Stack Developer
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold leading-tight">Hi, I'm <span class="gradient-text">Prahlad Shukla</span></h1>
+                <div class="terminal-window max-w-md mt-8">
+                    <div class="terminal-header">
+                        <div class="terminal-button bg-red-500"></div>
+                        <div class="terminal-button bg-yellow-500"></div>
+                        <div class="terminal-button bg-green-500"></div>
+                        <div class="ml-4 text-gray-200 code-font text-sm">user@portfolio ~</div>
+                    </div>
+                    <div class="terminal-body">
+                        <p class="mb-2"><span class="terminal-prompt">$</span> whoami</p>
+                        <p class="mb-2">Senior Developer with 8+ years of experience</p>
+                        <p class="mb-2"><span class="terminal-prompt">$</span> cat specialty.txt</p>
+                        <p>Java | Spring Boot | React | Cloud Architecture</p>
+                        <p class="mt-2"><span class="terminal-prompt">$</span> <span class="typewriter-wrapper">find ./projects</span><span class="terminal-cursor"></span></p>
+                    </div>
+                </div>
+                <div class="flex mt-10 space-x-4">
+                    <a href="#projects" class="bg-primary-light text-white px-8 py-3 rounded-full hover:bg-primary-dark transition shadow-lg flex items-center">
+                        <i class="fas fa-code-branch mr-2"></i> View Work
+                    </a>
+                    <a href="#contact" class="border-2 border-primary-light text-primary-light dark:text-primary-dark px-8 py-3 rounded-full hover:bg-primary-light hover:text-white transition flex items-center">
+                        <i class="fas fa-paper-plane mr-2"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="absolute inset-0 gradient-bg rounded-full animate-float"></div>
+                    <div class="relative hexagon w-80 h-80 bg-white dark:bg-dark-200 shadow-xl flex items-center justify-center">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Prahlad Shukla" class="hexagon w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-5 -left-5 bg-secondary-light text-white px-4 py-2 rounded-full shadow-lg">
+                        <i class="fas fa-award mr-2"></i> 8+ Years Experience
+                    </div>
+                    <div class="absolute -top-5 -right-5 bg-primary-light text-white px-4 py-2 rounded-full shadow-lg">
+                        <i class="fas fa-star mr-2"></i> Expert Developer
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 bg-gray-100 dark:bg-dark-200">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-20">About <span class="gradient-text">Me</span></h2>
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-2/5 flex justify-center">
+                    <div class="relative">
+                        <div class="w-80 h-80 gradient-bg rounded-2xl p-1 animate-glow">
+                            <div class="w-full h-full bg-gray-300 dark:bg-dark-100 rounded-2xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" alt="Prahlad Shukla" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-5 -left-5 bg-white dark:bg-dark-100 shadow-xl rounded-lg p-4 w-64">
+                            <div class="flex items-center">
+                                <div class="bg-primary-light/10 p-2 rounded-full mr-3">
+                                    <i class="fas fa-medal text-primary-light text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Senior Developer</h4>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">8+ Years Experience</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-3/5">
+                    <h3 class="text-2xl font-semibold mb-6">Crafting Digital Excellence Through Code</h3>
+                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">Hello! I'm Prahlad Shukla, a seasoned Senior Developer with over 8 years of experience in creating robust, scalable web applications. I specialize in Java, Spring Boot, and modern JavaScript frameworks.</p>
+                    <p class="text-lg text-gray-700 dark:text-gray-300 mb-8">My passion lies in architecting solutions that not only meet business requirements but also exceed performance expectations. I thrive in challenging environments and enjoy mentoring junior developers.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-center">
+                            <div class="bg-primary-light/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-user-graduate text-primary-light text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Education</h4>
+                                <p class="text-gray-600 dark:text-gray-400">Masters in Computer Science</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary-light/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-briefcase text-primary-light text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Experience</h4>
+                                <p class="text-gray-600 dark:text-gray-400">8+ Years Development</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary-light/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-project-diagram text-primary-light text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Projects</h4>
+                                <p class="text-gray-600 dark:text-gray-400">50+ Completed</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-primary-light/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-users text-primary-light text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Clients</h4>
+                                <p class="text-gray-600 dark:text-gray-400">30+ Happy Clients</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-primary-light text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition flex items-center">
+                            <i class="fas fa-download mr-2"></i> Download CV
+                        </a>
+                        <a href="#contact" class="border-2 border-primary-light text-primary-light dark:text-primary-dark px-6 py-3 rounded-lg hover:bg-primary-light hover:text-white transition flex items-center">
+                            <i class="fas fa-calendar-alt mr-2"></i> Schedule Meeting
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-white dark:bg-dark-300">
+        <div class="container mx-auto">
+            <h2 class="text-4xl font-bold text-center mb-6">My <span class="gradient-text">Skills</span></h2>
+            <p class="text-xl text-center text-gray-600 dark:text-gray-400 mb-16">Mastering the tools and technologies that drive digital innovation</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <!-- Technical Skills -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8 flex items-center">
+                        <i class="fas fa-laptop-code mr-3 text-primary-light"></i> Technical Skills
+                    </h3>
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold">Java & Spring Boot</span>
+                                <span>98%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-dark-100 rounded-full">
+                                <div class="skill-bar h-2 rounded-full" style="width: 98%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold">React & Angular</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-dark-100 rounded-full">
+                                <div class="skill-bar h-2 rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold">Cloud Architecture</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-dark-100 rounded-full">
+                                <div class="skill-bar h-2 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold">Database Design</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-dark-100 rounded-full">
+                                <div class="skill-bar h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Professional Skills -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-8 flex items-center">
+                        <i class="fas fa-chart-line mr-3 text-primary-light"></i> Professional Skills
+                    </h3>
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold">Technical Leadership</span>
+                                <span>96%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-dark-100 rounded-full">
+                                <div class="skill-bar h-2 rounded-full" style="width: 96%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold">Project Management</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-dark-100 rounded-full">
+                                <div class="skill-bar h-2 rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold">Team Mentoring</span>
+                                <span>94%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-dark-100 rounded-full">
+                                <div class="skill-bar h-2 rounded-full" style="width: 94%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-3">
+                                <span class="font-semibold">Solution Architecture</span>
+                                <span>97%</span>
+                            </div>
+                            <div class="h-2 bg-gray-200 dark:bg-dark-100 rounded-full">
+                                <div class="skill-bar h-2 rounded-full" style="width: 97%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tools & Technologies -->
+            <h3 class="text-2xl font-semibold mt-20 mb-12 text-center">Technologies I Work With</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <div class="bg-gray-100 dark:bg-dark-200 rounded-xl p-6 flex items-center justify-center card-hover">
+                    <i class="fab fa-java text-5xl text-primary-light"></i>
+                </div>
+                <div class="bg-gray-100 dark:bg-dark-200 rounded-xl p-6 flex items-center justify-center card-hover">
+                    <i class="fas fa-leaf text-5xl text-primary-light"></i>
+                </div>
+                <div class="bg-gray-100 dark:bg-dark-200 rounded-xl p-6 flex items-center justify-center card-hover">
+                    <i class="fab fa-react text-5xl text-primary-light"></i>
+                </div>
+                <div class="bg-gray-100 dark:bg-dark-200 rounded-xl p-6 flex items-center justify-center card-hover">
+                    <i class="fab fa-aws text-5xl text-primary-light"></i>
+                </div>
+                <div class="bg-gray-100 dark:bg-dark-200 rounded-xl p-6 flex items-center justify-center card-hover">
+                    <i class="fab fa-docker text-5xl text-primary-light"></i>
+                </div>
+                <div class="bg-gray-100 dark:bg-dark-200 rounded-xl p-6 flex items-center justify-center card-hover">
+                    <i class="fas fa-database text-5xl text-primary-light"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for Dark Mode and Animations -->
+    <script>
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Set initial theme
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDarkScheme.matches)) {
+            document.documentElement.classList.add('dark');
+            darkModeToggle.checked = true;
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkModeToggle.checked = false;
+        }
+        
+        // Toggle theme
+        darkModeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Back to top button
+        const backToTopButton = document.createElement('button');
+        backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        backToTopButton.className = 'fixed bottom-8 right-8 bg-primary-light text-white p-3 rounded-full shadow-lg hidden z-50';
+        backToTopButton.id = 'backToTop';
+        document.body.appendChild(backToTopButton);
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Create animated particles
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                const size = Math.random() * 20 + 5;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 10 + 10;
+                
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
+                particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles
+        createParticles();
+    </script>
+</body>
+</html>
